@@ -1,0 +1,25 @@
+{
+  "name": "fastify-prisma-rest-api",
+  "version": "1.0.0",
+  "description": "Fastify Prisma REST API Tutorial",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
+  },
+  "author": "imvinojanv",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "fastify": "^4.26.2",
+    "fastify-jwt": "^4.2.0",
+    "fastify-swagger": "^5.2.0",
+    "fastify-zod": "^1.4.0",
+    "zod": "^3.23.4",
+    "zod-to-json-schema": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
