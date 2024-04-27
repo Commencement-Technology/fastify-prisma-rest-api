@@ -9,9 +9,10 @@
   "author": "imvinojanv",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/jwt": "^8.0.0",
     "@prisma/client": "^5.13.0",
     "fastify": "^4.26.2",
-    "fastify-jwt": "^4.2.0",
     "fastify-swagger": "^5.2.0",
     "fastify-zod": "^1.4.0",
     "zod": "^3.23.4",

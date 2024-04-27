@@ -7,7 +7,7 @@
 -   Install some dev dependencies (`npm i ts-node-dev typescript @types/node --save-dev`)
 
 -   Create a new folder and file (/src/app.ts)
--   Write the basic code to run derver and test the helloworld endpoint
+-   Write the basic code to run server and test the helloworld endpoint
 -   Create new folders (/src/modules/product, /src/modules/user)
     > Both folder will have each of controllers, schemas, routes, and services
     -   Create files for controller, schema, route, and service inside the folder (user.route.ts, etc.)
@@ -22,4 +22,7 @@
 -   Create the utils/prisma.ts file to make the prisma connection
 -   Implement the service file for createUser function (user.service.ts)
 -   Implement the schema with zod (user.schema.ts)
--   Import the CreateUseInput type imto the user.service file as the props' type
+-   Import the CreateUserInput type into the user.service file as the props' type
+
+### Hash the password using the manual function
+-   Create a new file as hash.ts inside the utils folder
