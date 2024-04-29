@@ -1,6 +1,6 @@
 # Build a RESTful API with Fastify, Prisma & TypeScript
 
-![fastify-prisma-rest-api](https://github.com/TomDoesTech/fastify-prisma-rest-api/assets/48822560/8bcbcc47-038d-4974-9034-2574bec312f9)
+![Fastify Application](https://github.com/imvinojanv/fastify-prisma-rest-api/assets/48822560/3f19c3b5-f12c-48b7-9f46-5ac21811753f)
 
 ## What are we using?
 * Fastify - Web server
