@@ -9,7 +9,7 @@ declare module 'fastify' {
     }
 }
 type UserPayload = {
-    id: string
+    id: number
     email: string
     name: string
 }

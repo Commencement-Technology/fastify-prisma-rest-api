@@ -4,6 +4,8 @@ import fCookie from '@fastify/cookie';
 
 import userRoutes from "./modules/user/user.route";
 import { userSchemas } from './modules/user/user.schema';
+import { productSchemas } from './modules/product/product.schema';
+import productRoutes from "./modules/product/product.route";
 
 const fastify = Fastify();
 
@@ -43,14 +45,15 @@ fastify.post('/helloworld', async (request: FastifyRequest, reply: FastifyReply)
 })
 
 async function main() {
-    for (const schema of userSchemas) {         // should be add these schemas before you register your routes
+    for (const schema of [...userSchemas, ...productSchemas]) {         // It should be before you register your routes
         fastify.addSchema(schema);
-    }
+    };
 
-    fastify.register(userRoutes, { prefix: 'api/users' })      // routes register
+    fastify.register(userRoutes, { prefix: 'api/users' })           // user routes
+    fastify.register(productRoutes, { prefix: 'api/products' })     // product routes
 
     try {
-        await fastify.listen(3000, "0.0.0.0");
+        await fastify.listen({ port: 3000, host: "0.0.0.0" });
         console.log("Server listening at http://localhost:3000");
 
     } catch (error) {
