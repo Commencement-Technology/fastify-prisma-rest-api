@@ -38,16 +38,52 @@ fastify.decorate(
 )
 
 fastify.post('/helloworld', async (request: FastifyRequest, reply: FastifyReply) => {
-    // return { message: 'Hello World!' }
-    const body = request.body;
-    const token = request.jwt.sign({ body })
-    return reply.send({ token })
+    return { message: 'Hello World!' }
 })
 
 async function main() {
     for (const schema of [...userSchemas, ...productSchemas]) {         // It should be before you register your routes
         fastify.addSchema(schema);
     };
+
+    fastify.register(require('@fastify/swagger'), {});
+    fastify.register(require('@fastify/swagger-ui'), {
+        routePrefix: '/docs',
+        swagger: {
+            info: {
+                title: 'Fastify Prisma REST API',
+                description: 'A REST API built with Fastify, Prisma and TypeScript',
+                version: '1.0.0',
+                contact: {
+                    name: "Vinojan Abhimanyu",
+                    url: "https://vinojan.online",
+                    email: "imvinojanv@gmail.com"
+                },
+            },
+            externalDocs: {
+                url: 'https://github.com/imvinojanv/fastify-prisma-rest-api',
+                description: 'Fastify Tutorial source code is on GitHub',
+            },
+            host: '0.0.0.0:3000',
+            basePath: '/',
+            schemes: ['http', 'https'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+        },
+        uiConfig: {
+            docExpansion: 'none', // expand/not all the documentations none|list|full
+            deepLinking: true,
+        },
+        staticCSP: false,
+        transformStaticCSP: (header: any) => header,
+        exposeRoute: true
+    });
+
+    // Executes Swagger
+    fastify.ready(err => {
+        if (err) throw err
+        fastify.swagger()
+    })
 
     fastify.register(userRoutes, { prefix: 'api/users' })           // user routes
     fastify.register(productRoutes, { prefix: 'api/products' })     // product routes
