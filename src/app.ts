@@ -21,16 +21,19 @@ fastify.register(fCookie, {
     hook: 'preHandler',
 })
 
-// fastify.decorate(
-//     "authenticate",
-//     async (request: FastifyRequest, reply: FastifyReply) => {
-//         try {
-//             await request.jwtVerify();
-//         } catch (error) {
-//             return reply.send(error);
-//         }
-//     }
-// )
+fastify.decorate(
+    'authenticate',
+    async (request: FastifyRequest, reply: FastifyReply) => {
+        const token = request.cookies.access_token;
+
+        if (!token) {
+            return reply.status(401).send({ message: 'Authentication required' })
+        }
+
+        const decoded = request.jwt.verify<FastifyJWT['user']>(token)
+        request.user = decoded
+    }
+)
 
 fastify.post('/helloworld', async (request: FastifyRequest, reply: FastifyReply) => {
     // return { message: 'Hello World!' }
